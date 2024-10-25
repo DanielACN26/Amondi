@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Solicitudes Registradas</title>
+</head>
+<body>
+    <h2>Solicitudes Registradas</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombres y Apellidos</th>
+                <th>Alias</th>
+                <th>Género</th>
+                <th>Zona de Residencia</th>
+                <th>Estado</th>
+                <th>Urbanización</th>
+                <th>Tipo de Documento</th>
+                <th>Número de Documento</th>
+                <th>Número Principal</th>
+                <th>Número Secundario</th>
+                <th>Correo Electrónico</th>
+                <th>Emprendimiento</th>
+                <th>Instagram</th>
+                <th>Referido</th>
+                <th>Teléfono Referido</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for solicitud in solicitudes %}
+            <tr>
+                <td>{{ solicitud[1] }}</td>
+                <td>{{ solicitud[2] }}</td>
+                <td>{{ solicitud[3] }}</td>
+                <td>{{ solicitud[4] }}</td>
+                <td>{{ solicitud[5] }}</td>
+                <td>{{ solicitud[6] }}</td>
+                <td>{{ solicitud[7] }}</td>
+                <td>{{ solicitud[8] }}</td>
+                <td>{{ solicitud[9] }}</td>
+                <td>{{ solicitud[10] }}</td>
+                <td>{{ solicitud[11] }}</td>
+                <td>{{ solicitud[12] }}</td>
+                <td>{{ solicitud[13] }}</td>
+                <td>{{ solicitud[14] }}</td>
+                <td>{{ solicitud[15] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,134 @@
+/* Estilos generales */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #3f08a5; /* Fondo morado */
+    color: white;
+    min-height: 100vh; /* Ajusta el alto del body para cubrir toda la pantalla */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    background-image: url('/images/logo.png'); /* Ruta de tu logo */
+    background-repeat: no-repeat; /* No repetir la imagen */
+    background-size: contain; /* Ajusta la imagen al tamaño del contenedor */
+    background-position: center; /* Centra la imagen */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #3f08a5;
+    box-sizing: border-box; /* Evita que los elementos sobresalgan */
+}
+
+.header {
+    background-color: #b9b9b9; /* Fondo gris claro */
+    padding: 15px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    border-radius: 8px 8px 0 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-top: 15px;
+}
+
+input, select, button {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; /* Asegura que los campos no sobresalgan */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño del elemento */
+}
+
+button {
+    background-color: #3f08a5; /* Botón morado */
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #6a006a;
+}
+
+.form-section {
+    margin-top: 0; /* Elimina el margen superior */
+    margin-bottom: 20px; /* Asegúrate de que el margen inferior se mantenga */
+    padding: 15px; /* Si no tienes padding, puedes agregarlo para que el contenido no toque los bordes */
+    background-color: #b9b9b9; /* Color de fondo para las secciones */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.form-section h3 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #3f08a5;
+}
+
+/* Diseño responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Agrega espacio en los lados */
+    }
+    .form-container {
+        padding: 15px;
+        max-width: 100%;
+        margin: 0; /* Elimina margen para evitar corte */
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    label, input, select, button {
+        font-size: 14px;
+    }
+
+    .form-section h3 {
+        font-size: 16px;
+    }
+    
+    .rules-list {
+        margin-top: 10px;
+        padding-left: 20px;
+        text-align: justify; /* Justifica el texto de las normas */
+    }
+    
+    .rules-list li {
+        margin-bottom: 30px; /* Aumenta la distancia entre normas */
+        padding: 15px; /* Espacio interno para que se vea mejor */
+        background-color: #f0f8ff; /* Color de fondo claro para las normas */
+        border-radius: 5px; /* Bordes redondeados para un mejor estilo */
+        border-left: 4px solid #800080; /* Línea a la izquierda para diferenciar cada norma */
+        font-weight: bold; /* Texto en negrita para destacar */
+        color: #333; /* Color del texto más oscuro */
+    }
+    
+    .rules-list input[type="checkbox"] {
+        margin-top: 10px;
+        margin-right: 10px; /* Espacio a la derecha del checkbox */
+    }
+}
+
+/* Estilo del placeholder */
+input::placeholder, 
+select::placeholder {
+    color: #cccccc; /* Color claro para el placeholder */
+    opacity: 1; /* Asegura que el color sea visible */
+}

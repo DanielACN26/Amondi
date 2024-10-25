@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="header">Registro de Usuario Amondi</h2>
+        <form action="/procesar_registro" method="POST">
+            <!-- Sección de Información Personal -->
+            <div class="form-section">
+                <h3>Información Personal</h3>
+                
+                <label for="nombres_apellidos">Nombres y Apellidos:</label>
+                <input type="text" id="nombres_apellidos" name="nombres_apellidos" placeholder="Ejemplo: Juanito Perez" required>
+                
+                <label for="alias">Alias:</label>
+                <input type="text" id="alias" name="alias" placeholder="Ejemplo: Juanito" required>
+                
+                <label for="genero">Género:</label>
+                <select id="genero" name="genero" required>
+                    <option value="">Seleccionar</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+            
+            <!-- Sección de Ubicación -->
+            <div class="form-section">
+                <h3>Ubicación</h3>
+                
+                <label for="zona_residencia">Zona de Residencia:</label>
+                <input type="text" id="zona_residencia" name="zona_residencia" placeholder="Ejemplo: Santa Rosa" required>
+                
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" placeholder="Ejemplo: Sucre" required>
+                
+                <label for="urbanizacion">Urbanización:</label>
+                <input type="text" id="urbanizacion" name="urbanizacion" placeholder="Ejemplo: Horizonte" required>
+            </div>
+            
+            <!-- Sección de Documento de Identidad -->
+            <div class="form-section">
+                <h3>Documento de Identidad</h3>
+                
+                <label for="tipo_documento">Tipo de Documento:</label>
+                <select id="tipo_documento" name="tipo_documento" required>
+                    <option value="">Seleccionar</option>
+                    <option value="cedula">Cédula</option>
+                    <option value="pasaporte">Pasaporte</option>
+                </select>
+                
+                <label for="numero_documento">Número de Documento:</label>
+                <input type="text" id="numero_documento" name="numero_documento" required pattern="\d+" title="Solo se permiten números" placeholder="Ejemplo: 28503641">
+            </div>
+            
+            <!-- Sección de Números de Teléfono -->
+            <div class="form-section">
+                <h3>Números de Teléfono</h3>
+                
+                <label for="numero_principal">Número Principal:</label>
+                <input type="tel" id="numero_principal" name="numero_principal" required pattern="\d{11}" title="Debe contener 11 números" placeholder="Ejemplo: 04242574560">
+                
+                <label for="numero_secundario">Número Secundario:</label>
+                <input type="tel" id="numero_secundario" name="numero_secundario" pattern="\d{11}" title="Debe contener 11 números" placeholder="Ejemplo: 04162774541" required>
+            </div>
+            
+            <!-- Sección de Información del Emprendimiento -->
+            <div class="form-section">
+                <h3>Información del Emprendimiento</h3>
+                
+                <label for="nombre_emprendimiento">Nombre del Emprendimiento:</label>
+                <input type="text" id="nombre_emprendimiento" name="nombre_emprendimiento" placeholder="Ejemplo: Amondi">
+                
+                <label for="instagram_emprendimiento">Cuenta de Instagram:</label>
+                <input type="text" id="instagram_emprendimiento" name="instagram_emprendimiento" placeholder="Ejemplo: amondi_red">
+
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" placeholder="Ejemplo: tucorreo@gmail.com">
+            </div>
+            <div class="form-section">
+                <h3>Información del Referidor</h3>
+                <label for="referido_nombre">Nombre del Referidor</label>
+                <input type="text" id="referido_nombre" name="referido_nombre" placeholder="Ejemplo: Raul">
+                
+                <label for="referido_telefono">Número del Referidor</label>
+                <input type="tel" id="referido_telefono" name="referido_telefono" pattern="\d{11}" title="Debe contener 11 números" placeholder="Ejemplo: 04122574560">
+            </div>
+            <div class="form-section">
+                <h3>Normas</h3>
+                <p><strong>Debes aceptar todas las reglas para poder ingresar a los grupos</strong></p>
+                
+                <ol class="rules-list">
+                    <li>
+                        Horario de los grupos: 6:00am a 10:00pm (no debes publicar fuera de este horario)
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        Únicamente promoción de productos y servicios (no debes publicar nada que no cumpla con el objetivo de los grupos)
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        Prohibida la venta de medicinas, material estratégico, ofertas de inversión y productos de programas de ayuda social
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        Las publicaciones deben tener precio
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        Las transacciones son en privado
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        Máximo 1 archivo (imagen, video o PDF) y 1 texto por publicación (si quieres enviar más de una foto en una publicación, debes hacer un collage)
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        No repetir publicaciones en el día (para evitar que los compradores se aburran de ver publicaciones repetidas)
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        Máximo 3 publicaciones al día (para evitar que a los compradores se les saturen los teléfonos con mensajes y archivos)
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        Debes esperar al menos dos (2) horas entre cada publicación (para evitar que a los compradores les lleguen ráfagas de mensajes en corto tiempo)
+                        <div><input type="checkbox" required></div>
+                    </li>
+                    <li>
+                        No está permitido bloquear a los Administradores de Amondi en WhatsApp (eventualmente te enviaremos información a tu privado y no podemos permitirnos que no llegue a su destino)
+                        <div><input type="checkbox" required></div>
+                    </li>
+                </ol>
+            </div>
+            
+            
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+</body>
+</html>
+

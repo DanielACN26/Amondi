@@ -1,0 +1,47 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #800080; /* Fondo morado */
+    color: white;
+    text-align: center;
+    padding: 50px;
+    margin: 0;
+}
+
+.message {
+    background-color: #d3d3d3; /* Fondo gris claro */
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.whatsapp-button {
+    background-color: #25D366; /* Color de WhatsApp */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Sin subrayado */
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.whatsapp-button:hover {
+    background-color: #128C7E; /* Color de hover */
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 600px) {
+    body {
+        padding: 20px; /* Reducir padding en pantallas pequeñas */
+    }
+    .message {
+        padding: 15px; /* Reducir padding en el mensaje */
+    }
+    .whatsapp-button {
+        padding: 10px 20px; /* Botón más pequeño en pantallas pequeñas */
+        font-size: 14px; /* Texto más pequeño */
+    }
+}

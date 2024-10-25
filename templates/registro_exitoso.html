@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Exitoso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_registro.css') }}">
+</head>
+<body>
+    <div class="message">
+        <h2>Registro Exitoso</h2>
+        <p>¡Gracias por registrarte!</p>
+    </div>
+    <a href="https://api.whatsapp.com/send?phone=584242559860&text=El%20usuario%20{{nombre_usuario}}%20ha%20finalizado%20su%20registro." class="whatsapp-button">Notificar a un Administrador por WhatsApp</a>
+</body>
+</html>
