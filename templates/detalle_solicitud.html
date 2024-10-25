@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Solicitud</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_detalle.css') }}">
+</head>
+<body>
+    <h2>Detalle de la Solicitud</h2>
+
+    <table border="1">
+        <tr>
+            <th>Nombres y Apellidos</th>
+            <td>{{ solicitud[1] }}</td>
+        </tr>
+        <tr>
+            <th>Alias</th>
+            <td>{{ solicitud[2] }}</td>
+        </tr>
+        <tr>
+            <th>Género</th>
+            <td>{{ solicitud[3] }}</td>
+        </tr>
+        <tr>
+            <th>Zona de Residencia</th>
+            <td>{{ solicitud[4] }}</td>
+        </tr>
+        <tr>
+            <th>Estado</th>
+            <td>{{ solicitud[5] }}</td>
+        </tr>
+        <tr>
+            <th>Urbanización</th>
+            <td>{{ solicitud[6] }}</td>
+        </tr>
+        <tr>
+            <th>Tipo de Documento</th>
+            <td>{{ solicitud[7] }}</td>
+        </tr>
+        <tr>
+            <th>Número de Documento</th>
+            <td>{{ solicitud[8] }}</td>
+        </tr>
+        <tr>
+            <th>Número Principal</th>
+            <td>{{ solicitud[9] }}</td>
+        </tr>
+        <tr>
+            <th>Número Secundario</th>
+            <td>{{ solicitud[10] }}</td>
+        </tr>
+        <tr>
+            <th>Correo Electrónico</th>
+            <td>{{ solicitud[11] }}</td>
+        </tr>
+        <tr>
+            <th>Nombre del Emprendimiento</th>
+            <td>{{ solicitud[12] }}</td>
+        </tr>
+        <tr>
+            <th>Instagram del Emprendimiento</th>
+            <td>{{ solicitud[13] }}</td>
+        </tr>
+        <tr>
+            <th>Referido</th>
+            <td>{{ solicitud[14] }}</td>
+        </tr>
+        <tr>
+            <th>Teléfono del Referido</th>
+            <td>{{ solicitud[15] }}</td>
+        </tr>
+    </table>
+
+    <a href="{{ url_for('editar_solicitud', id_solicitud=solicitud[0]) }}" class="btn">Editar</a>
+    <a href="{{ url_for('admin') }}" class="btn">Volver a la página de administración</a>
+
+</body>
+</html>

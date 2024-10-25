@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Solicitudes Registradas</title>
+    <link rel="stylesheet" href="/static/styles_admin.css"> <!-- Referencia al CSS -->
 </head>
 <body>
-    <h2>Solicitudes Registradas</h2>
-    <table border="1">
+    <h2>Bienvenido, {{ session['username'] }}. Aquí están las solicitudes registradas:</h2>
+    <table>
         <thead>
             <tr>
                 <th>Nombres y Apellidos</th>
@@ -25,6 +26,7 @@
                 <th>Instagram</th>
                 <th>Referido</th>
                 <th>Teléfono Referido</th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -45,9 +47,11 @@
                 <td>{{ solicitud[13] }}</td>
                 <td>{{ solicitud[14] }}</td>
                 <td>{{ solicitud[15] }}</td>
+                <td><a href="{{ url_for('detalle_solicitud', id_solicitud=solicitud[0]) }}" class="review-button">Revisar</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a href="{{ url_for('logout') }}">Cerrar sesión</a> <!-- Botón para cerrar sesión -->
 </body>
 </html>

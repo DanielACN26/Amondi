@@ -1,0 +1,108 @@
+/* Estilos para la página de editar solicitud */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0; /* Fondo suave */
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #3f08a5;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #ffffff; /* Fondo blanco para el formulario */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto; /* Centra el formulario en la página */
+}
+
+label {
+    margin-top: 15px;
+    font-weight: bold; /* Negrita para etiquetas */
+    color: #3f08a5;
+}
+
+input[type="text"],
+input[type="email"] {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; /* Asegura que los campos no sobresalgan */
+    box-sizing: border-box; /* Incluye padding y border en el tamaño del elemento */
+    transition: border 0.3s; /* Transición suave para el borde */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    border-color: #3f08a5; /* Cambia el color del borde al enfocar */
+}
+
+button {
+    background-color: #3f08a5; /* Botón morado */
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; /* Asegura que el botón ocupe todo el ancho */
+}
+
+button:hover {
+    background-color: #6a006a; /* Cambia a un morado más oscuro al pasar el mouse */
+}
+
+a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #3f08a5;
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: underline; /* Subraya el enlace al pasar el mouse */
+}
+
+.button-container {
+    margin-top: 20px; /* Espacio superior entre los campos y los botones */
+    text-align: center; /* Centra los botones */
+}
+
+button,
+.cancel-button {
+    background-color: #3f08a5; /* Botón morado */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 45%; /* Cambia el ancho si es necesario */
+    display: inline-block; /* Para que estén en línea */
+    margin: 5px; /* Espacio entre los botones */
+    text-align: center; /* Alinear texto al centro */
+    text-decoration: none; /* Quita el subrayado del enlace */
+}
+
+.cancel-button {
+    background-color: #f44336; /* Botón rojo para cancelar */
+}
+
+button:hover,
+.cancel-button:hover {
+    background-color: #6a006a; /* Cambia el color del botón morado al pasar el mouse */
+}
+
+.cancel-button:hover {
+    background-color: #d32f2f; /* Cambia el color del botón rojo al pasar el mouse */
+}

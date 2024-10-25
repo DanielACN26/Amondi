@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Solicitud</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='editar_solicitud.css') }}">
+
+</head>
+<body>
+    <div class="form-container">
+        <h2>Editar Solicitud</h2>
+        <form method="POST" action="{{ url_for('editar_solicitud', id_solicitud=solicitud[0]) }}">
+            <div class="form-group">
+                <label for="nombres_apellidos">Nombres y Apellidos</label>
+                <input type="text" name="nombres_apellidos" value="{{ solicitud[1] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="alias">Alias</label>
+                <input type="text" name="alias" value="{{ solicitud[2] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="genero">Género</label>
+                <input type="text" name="genero" value="{{ solicitud[3] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="zona_residencia">Zona de Residencia</label>
+                <input type="text" name="zona_residencia" value="{{ solicitud[4] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="estado">Estado</label>
+                <input type="text" name="estado" value="{{ solicitud[5] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="urbanizacion">Urbanización</label>
+                <input type="text" name="urbanizacion" value="{{ solicitud[6] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo_documento">Tipo de Documento</label>
+                <input type="text" name="tipo_documento" value="{{ solicitud[7] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="numero_documento">Número de Documento</label>
+                <input type="text" name="numero_documento" value="{{ solicitud[8] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="numero_principal">Número Principal</label>
+                <input type="text" name="numero_principal" value="{{ solicitud[9] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="numero_secundario">Número Secundario</label>
+                <input type="text" name="numero_secundario" value="{{ solicitud[10] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo Electrónico</label>
+                <input type="email" name="correo" value="{{ solicitud[11] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre_emprendimiento">Nombre del Emprendimiento</label>
+                <input type="text" name="nombre_emprendimiento" value="{{ solicitud[12] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="instagram_emprendimiento">Instagram del Emprendimiento</label>
+                <input type="text" name="instagram_emprendimiento" value="{{ solicitud[13] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="referido_nombre">Referido</label>
+                <input type="text" name="referido_nombre" value="{{ solicitud[14] }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="referido_telefono">Teléfono del Referido</label>
+                <input type="text" name="referido_telefono" value="{{ solicitud[15] }}" required>
+            <div class="button-container">
+                <button type="submit">Guardar Cambios</button>
+                <a class="cancel-button" href="{{ url_for('detalle_solicitud', id_solicitud=solicitud[0]) }}">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

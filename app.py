@@ -1,7 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
 
 app = Flask(__name__, static_url_path='/static')
+app.secret_key = 'clave_secreta_super_segura'  # Cambia esto a una clave secreta real
+
+# Credenciales de los usuarios
+usuarios = {
+    'danielcn': '1234',
+    'carlatg': '5678'
+}
 
 @app.route('/')
 def registro():
@@ -48,10 +55,14 @@ def registro_exitoso():
     nombre_usuario = request.args.get('nombre_usuario')  # Obtener el nombre del usuario
     return render_template('registro_exitoso.html', nombre_usuario=nombre_usuario)
 
-
 @app.route('/admin')
 def admin():
-    # Conectar con la base de datos y obtener los datos de los usuarios
+    # Verificar si el usuario está autenticado
+    if 'username' not in session:
+        flash('Por favor, inicia sesión primero.', 'warning')
+        return redirect(url_for('login'))
+
+    # Si está autenticado, carga las solicitudes
     conn = sqlite3.connect('solicitudes.db')
     c = conn.cursor()
     c.execute('SELECT * FROM usuarios')
@@ -60,7 +71,107 @@ def admin():
     
     return render_template('admin.html', solicitudes=solicitudes)
 
-# Aquí va el bloque que arranca la aplicación
+@app.route('/dashboard')
+def dashboard():
+    print(session)  # Imprime el contenido de la sesión para depuración
+    if 'username' not in session:
+        return redirect(url_for('admin'))  # Redirige al inicio de sesión si no está autenticado
+    
+    # Conectar con la base de datos y obtener los datos de los usuarios
+    conn = sqlite3.connect('solicitudes.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM usuarios')
+    solicitudes = c.fetchall()
+    conn.close()
+
+    return render_template('admin.html', solicitudes=solicitudes)
+
+def get_solicitud_por_id(id_solicitud):
+    # Conectar con la base de datos y obtener la solicitud por ID
+    conn = sqlite3.connect('solicitudes.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM usuarios WHERE id = ?', (id_solicitud,))
+    solicitud = c.fetchone()
+    conn.close()
+    return solicitud
+
+@app.route('/admin/detalle/<int:id_solicitud>')
+def detalle_solicitud(id_solicitud):
+    if 'username' not in session:
+        flash('Por favor, inicia sesión primero.', 'warning')
+        return redirect(url_for('login'))
+
+    solicitud = get_solicitud_por_id(id_solicitud)
+    return render_template('detalle_solicitud.html', solicitud=solicitud)
+
+
+@app.route('/admin/editar/<int:id_solicitud>', methods=['GET', 'POST'])
+def editar_solicitud(id_solicitud):
+    solicitud = get_solicitud_por_id(id_solicitud)
+    
+    if request.method == 'POST':
+        # Recolecta datos editados desde el formulario
+        nombres_apellidos = request.form['nombres_apellidos']
+        alias = request.form['alias']
+        genero = request.form['genero']
+        zona_residencia = request.form['zona_residencia']
+        estado = request.form['estado']
+        urbanizacion = request.form['urbanizacion']
+        tipo_documento = request.form['tipo_documento']
+        numero_documento = request.form['numero_documento']
+        numero_principal = request.form['numero_principal']
+        numero_secundario = request.form['numero_secundario']
+        correo = request.form['correo']
+        nombre_emprendimiento = request.form['nombre_emprendimiento']
+        instagram_emprendimiento = request.form['instagram_emprendimiento']
+        referido_nombre = request.form['referido_nombre']
+        referido_telefono = request.form['referido_telefono']
+
+        # Actualiza los datos en la base de datos
+        conn = sqlite3.connect('solicitudes.db')
+        c = conn.cursor()
+        c.execute(''' 
+            UPDATE usuarios SET 
+                nombres_apellidos = ?, alias = ?, genero = ?, zona_residencia = ?, estado = ?, urbanizacion = ?, 
+                tipo_documento = ?, numero_documento = ?, numero_principal = ?, numero_secundario = ?, 
+                correo = ?, nombre_emprendimiento = ?, instagram_emprendimiento = ?, referido_nombre = ?, 
+                referido_telefono = ?
+            WHERE id = ?
+        ''', (nombres_apellidos, alias, genero, zona_residencia, estado, urbanizacion, tipo_documento, numero_documento,
+              numero_principal, numero_secundario, correo, nombre_emprendimiento, instagram_emprendimiento, 
+              referido_nombre, referido_telefono, id_solicitud))
+        conn.commit()
+        conn.close()
+
+        # Redirige de vuelta a la página de detalles
+        return redirect(url_for('detalle_solicitud', id_solicitud=id_solicitud))
+
+    return render_template('editar_solicitud.html', solicitud=solicitud)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        # Validación simple de usuario y contraseña
+        if (username == 'danielcn' and password == '1234') or (username == 'carlatg' and password == '5678'):
+            session['username'] = username  # Crear sesión
+            flash('Inicio de sesión exitoso', 'success')
+            return redirect(url_for('admin'))
+        else:
+            flash('Usuario o contraseña incorrectos', 'danger')
+
+    return render_template('login.html')
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)  # Eliminar la sesión
+    flash('Has cerrado sesión.', 'info')
+    return redirect(url_for('login'))
+
+
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
 
