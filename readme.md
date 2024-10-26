@@ -1,0 +1,1 @@
+Pagina oficial de Red de Publicidad Amondi, aqui los usuarios podran registrarse y los administradores podran verificar los datos de los usuarios.
