@@ -7,51 +7,53 @@
     <link rel="stylesheet" href="/static/styles_admin.css"> <!-- Referencia al CSS -->
 </head>
 <body>
-    <h2>Bienvenido, {{ session['username'] }}. Aquí están las solicitudes registradas:</h2>
+    <h2>Bienvenid@, {{ session['username'] }}. Aquí están las solicitudes registradas:</h2>
+    
+    <!-- Formulario de búsqueda -->
+    <form action="{{ url_for('buscar_por_cedula') }}" method="GET">
+        <label for="cedula">Buscar por Número de Cédula:</label>
+        <input type="text" name="cedula" id="cedula" required>
+        <button type="submit">Buscar</button>
+    </form>
+    
     <table>
         <thead>
             <tr>
                 <th>Nombres y Apellidos</th>
-                <th>Alias</th>
                 <th>Género</th>
-                <th>Zona de Residencia</th>
-                <th>Estado</th>
                 <th>Urbanización</th>
                 <th>Tipo de Documento</th>
                 <th>Número de Documento</th>
                 <th>Número Principal</th>
-                <th>Número Secundario</th>
-                <th>Correo Electrónico</th>
-                <th>Emprendimiento</th>
-                <th>Instagram</th>
                 <th>Referido</th>
                 <th>Teléfono Referido</th>
-                <th>Acción</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for solicitud in solicitudes %}
             <tr>
-                <td>{{ solicitud[1] }}</td>
-                <td>{{ solicitud[2] }}</td>
-                <td>{{ solicitud[3] }}</td>
-                <td>{{ solicitud[4] }}</td>
-                <td>{{ solicitud[5] }}</td>
-                <td>{{ solicitud[6] }}</td>
-                <td>{{ solicitud[7] }}</td>
-                <td>{{ solicitud[8] }}</td>
-                <td>{{ solicitud[9] }}</td>
-                <td>{{ solicitud[10] }}</td>
-                <td>{{ solicitud[11] }}</td>
-                <td>{{ solicitud[12] }}</td>
-                <td>{{ solicitud[13] }}</td>
-                <td>{{ solicitud[14] }}</td>
-                <td>{{ solicitud[15] }}</td>
-                <td><a href="{{ url_for('detalle_solicitud', id_solicitud=solicitud[0]) }}" class="review-button">Revisar</a></td>
+                <td>{{ solicitud[1] }}</td> <!-- Nombres y Apellidos -->
+                <td>{{ solicitud[3] }}</td> <!-- Género -->
+                <td>{{ solicitud[6] }}</td> <!-- Urbanización -->
+                <td>{{ solicitud[7] }}</td> <!-- Tipo de Documento -->
+                <td>{{ solicitud[8] }}</td> <!-- Número de Documento -->
+                <td>{{ solicitud[9] }}</td> <!-- Número Principal -->
+                <td>{{ solicitud[14] }}</td> <!-- Referido -->
+                <td>{{ solicitud[15] }}</td> <!-- Teléfono Referido -->
+                <td>
+                    <div class="action-buttons">
+                        <a href="{{ url_for('detalle_solicitud', id_solicitud=solicitud[0]) }}" class="review-button">Revisar</a>
+                        <a href="{{ url_for('eliminar_solicitud', id_solicitud=solicitud[0]) }}" class="delete-button">Eliminar</a>
+                    </div>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a href="{{ url_for('logout') }}">Cerrar sesión</a> <!-- Botón para cerrar sesión -->
+    <!-- Botón de cerrar sesión con un contenedor propio para darle estilo -->
+    <div class="logout-container">
+        <a href="{{ url_for('logout') }}" class="logout-button">Cerrar sesión</a>
+    </div>
 </body>
 </html>

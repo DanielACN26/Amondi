@@ -171,6 +171,48 @@ def logout():
     flash('Has cerrado sesión.', 'info')
     return redirect(url_for('login'))
 
+@app.route('/buscar_por_cedula', methods=['GET'])
+def buscar_por_cedula():
+    # Verificar si el usuario está autenticado
+    if 'username' not in session:
+        flash('Por favor, inicia sesión primero.', 'warning')
+        return redirect(url_for('login'))
+
+    # Obtener el número de cédula del formulario
+    cedula = request.args.get('cedula')
+
+    # Conectar con la base de datos y buscar la solicitud por número de cédula
+    conn = sqlite3.connect('solicitudes.db')
+    c = conn.cursor()
+    c.execute('SELECT * FROM usuarios WHERE numero_documento = ?', (cedula,))
+    solicitud = c.fetchone()
+    conn.close()
+
+    if solicitud:
+        # Si se encuentra una solicitud, redirigir a la página de detalles de solicitud
+        return render_template('detalle_solicitud.html', solicitud=solicitud)
+    else:
+        # Si no se encuentra, mostrar un mensaje de error y redirigir a la página de administración
+        flash('No se encontró ninguna solicitud con ese número de cédula.', 'warning')
+        return redirect(url_for('admin'))
+
+@app.route('/admin/eliminar/<int:id_solicitud>', methods=['GET'])
+def eliminar_solicitud(id_solicitud):
+    if 'username' not in session:
+        flash('Por favor, inicia sesión primero.', 'warning')
+        return redirect(url_for('login'))
+
+    # Conectar a la base de datos y eliminar la solicitud
+    conn = sqlite3.connect('solicitudes.db')
+    c = conn.cursor()
+    c.execute('DELETE FROM usuarios WHERE id = ?', (id_solicitud,))
+    conn.commit()
+    conn.close()
+    
+    flash('Solicitud eliminada exitosamente.', 'success')
+    return redirect(url_for('admin'))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

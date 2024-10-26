@@ -33,16 +33,64 @@ tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
+/* Contenedor de botones de acción */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px; /* Espacio entre los botones */
+}
+
+/* Estilo para el botón de revisar */
 .review-button {
-    display: inline-block;
-    padding: 8px 12px;
+    padding: 5px 10px;
     color: white;
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Verde */
+    border: none;
+    border-radius: 5px;
     text-decoration: none;
-    border-radius: 4px;
-    font-size: 13px;
+    cursor: pointer;
+    width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+    text-align: center;
 }
 
 .review-button:hover {
     background-color: #45a049;
+}
+
+/* Estilo para el botón de eliminar */
+.delete-button {
+    padding: 5px 10px;
+    color: white;
+    background-color: #f44336; /* Rojo */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+    text-align: center;
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Estilo para el botón de cerrar sesión */
+.logout-container {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.logout-button {
+    padding: 10px 20px;
+    background-color: #ff4d4d; /* Rojo suave */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #ff1a1a; /* Rojo más oscuro al pasar el mouse */
 }
