@@ -1,3 +1,6 @@
+import shutil
+import os
+from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import sqlite3
 
@@ -9,6 +12,22 @@ usuarios = {
     'danielcn': '1234',
     'carlatg': '5678'
 }
+
+def backup_database():
+    db_path = 'solicitudes.db'
+    backup_folder = 'backups'
+    os.makedirs(backup_folder, exist_ok=True)
+    backup_filename = f"solicitudes_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.db"
+    backup_path = os.path.join(backup_folder, backup_filename)
+    shutil.copy(db_path, backup_path)
+    print(f"Copia de seguridad creada: {backup_path}")
+
+# Llamamos a la función de respaldo cuando se inicia la aplicación
+backup_database()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/')
 def registro():

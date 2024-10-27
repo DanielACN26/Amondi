@@ -86,10 +86,10 @@
             <div class="form-section">
                 <h3>Información del Referidor</h3>
                 <label for="referido_nombre">Nombre del Referidor</label>
-                <input type="text" id="referido_nombre" name="referido_nombre" placeholder="Ejemplo: Raul">
+                <input type="text" id="referido_nombre" name="referido_nombre" placeholder="Ejemplo: Raul" required>
                 
                 <label for="referido_telefono">Número del Referidor</label>
-                <input type="tel" id="referido_telefono" name="referido_telefono" pattern="\d{11}" title="Debe contener 11 números" placeholder="Ejemplo: 04122574560">
+                <input type="tel" id="referido_telefono" name="referido_telefono" pattern="\d{11}" title="Debe contener 11 números" placeholder="Ejemplo: 04122574560" required>
             </div>
             <div class="form-section">
                 <h3>Normas</h3>
@@ -145,6 +145,26 @@
             <button type="submit">Registrar</button>
         </form>
     </div>
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            const fields = document.querySelectorAll("[required]");
+            let isValid = true;
+
+            fields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.style.borderColor = "red";  // Opcional: resalta el campo vacío
+                    isValid = false;
+                } else {
+                    field.style.borderColor = "";  // Opcional: resetea el estilo si el campo está lleno
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault();  // Previene el envío si falta información
+                alert("Por favor, complete todos los campos obligatorios.");
+            }
+        });
+    </script>
 </body>
 </html>
 
